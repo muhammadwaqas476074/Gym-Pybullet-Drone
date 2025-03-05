@@ -3,6 +3,14 @@ import numpy as np
 import pybullet as p
 import pybullet_data
 
+import time
+import argparse
+import numpy as np
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
 DURATION_SEC = 5
 
 X_AX_1 = -1; Y_AX_1 = -1; Z_AX_1 = -1;

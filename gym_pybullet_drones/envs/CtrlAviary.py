@@ -18,6 +18,7 @@ class CtrlAviary(BaseAviary):
                  physics: Physics=Physics.PYB,
                  pyb_freq: int = 240,
                  ctrl_freq: int = 240,
+                 freq: int=240,
                  gui=False,
                  record=False,
                  obstacles=False,
@@ -137,8 +138,17 @@ class CtrlAviary(BaseAviary):
             commanded to the 4 motors of each drone.
 
         """
-        return np.array([np.clip(action[i, :], 0, self.MAX_RPM) for i in range(self.NUM_DRONES)])
+        print(f"Action type: {type(action)}, Action shape: {np.shape(action)}, Action: {action}")
 
+        # Convert dictionary to a 2D numpy array if action is a dictionary
+        if isinstance(action, dict):
+            # Ensure the keys are integers and sorted
+            action = np.array([action[str(i)] for i in range(self.NUM_DRONES)])
+        # Reshape if necessary
+        if len(action.shape) == 1:
+            action = action.reshape((self.NUM_DRONES, 4))
+        # Clip and return
+        return np.array([np.clip(action[i, :], 0, self.MAX_RPM) for i in range(self.NUM_DRONES)])
     ################################################################################
 
     def _computeReward(self):

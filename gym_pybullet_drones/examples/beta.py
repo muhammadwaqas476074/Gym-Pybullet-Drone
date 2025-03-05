@@ -25,15 +25,13 @@ Run as:
     $ python beta.py
 
 """
+
 import time
 import argparse
 import numpy as np
 import csv
-
 import sys
 import os
-
-# Add the project root directory to the sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 
@@ -109,7 +107,7 @@ def run(
                 float(row["v_z"]),
             ]),
         } for row in csv_reader])
-    with open("../assets/beta.csv", mode='r') as csv_file:
+    with open("../assets/beta-traj.csv", mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         trajectory2 = iter(reversed([{
             "pos": np.array([

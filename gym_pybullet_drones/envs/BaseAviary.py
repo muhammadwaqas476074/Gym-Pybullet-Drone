@@ -165,6 +165,7 @@ class BaseAviary(gym.Env):
                 for i in range(4):
                     self.SLIDERS[i] = p.addUserDebugParameter("Propeller "+str(i)+" RPM", 0, self.MAX_RPM, self.HOVER_RPM, physicsClientId=self.CLIENT)
                 self.INPUT_SWITCH = p.addUserDebugParameter("Use GUI RPM", 9999, -1, 0, physicsClientId=self.CLIENT)
+                #You can add text prompt input here
         else:
             #### Without debug GUI #####################################
             self.CLIENT = p.connect(p.DIRECT)

@@ -9,7 +9,7 @@ sys.path.append('../')
 from gym_pybullet_drones.drone_test.BaseControl import BaseControl
 from gym_pybullet_drones.utils.enums import DroneModel
 
-class DSLPIDControl(BaseControl):
+class PYRTControl(BaseControl):
     """PID control class for Crazyflies.
 
     Based on work conducted at UTIAS' DSL. Contributors: SiQi Zhou, James Xu, 

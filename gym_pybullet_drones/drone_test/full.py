@@ -15,6 +15,7 @@ The drones move, at different altitudes, along cicular trajectories
 in the X-Y plane, around point (0, -.3).
 
 """
+
 import os
 import time
 import argparse
@@ -33,8 +34,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 
 from gym_pybullet_drones.utils.enums import DroneModel, Physics
 from gym_pybullet_drones.envs.CtrlAviary import CtrlAviary
-#from gym_pybullet_drones.control.DSLPIDControl import DSLPIDControl
-from gym_pybullet_drones.drone_test.PYRT import DSLPIDControl
+from gym_pybullet_drones.control.DSLPIDControl import DSLPIDControl
+from gym_pybullet_drones.drone_test.PYRT import PYRTControl
 from gym_pybullet_drones.utils.Logger import Logger
 from gym_pybullet_drones.utils.utils import sync, str2bool
 
@@ -51,7 +52,7 @@ DEFAULT_CONTROL_FREQ_HZ = 24
 DEFAULT_DURATION_SEC = 12
 DEFAULT_OUTPUT_FOLDER = 'results'
 DEFAULT_COLAB = False
-MOVEMENT_FILE_PATH = 'controls/R.txt'  # Path to the text file containing the movements
+MOVEMENT_FILE_PATH = 'controls/0.txt'  # Path to the text file containing the movements
 
 def read_movements_from_file(file_path):
     """
@@ -214,7 +215,7 @@ def run(
 
     #### Initialize the controllers ############################
     if drone in [DroneModel.CF2X, DroneModel.CF2P]:
-        ctrl = [DSLPIDControl(drone_model=drone) for i in range(num_drones)]
+        ctrl = [PYRTControl(drone_model=drone) for i in range(num_drones)]
 
     #### Run the simulation ####################################
     action = np.zeros((num_drones, 4))
